@@ -30,5 +30,19 @@ async fn create_booking(){
     let body: BookingResponse = 
         response.json().await.unwrap();
 
-    assert!(body.booking_id > 0);
+    let booking_id = body.booking_id;
+
+    println!("{}", booking_id);
+
+    let response_by_get= client
+        .get(format!("https://restful-booker.herokuapp.com/booking/{}",
+                      booking_id))
+        .send()
+        .await
+        .unwrap();
+    let body_from_get: BookingRequest = 
+        response_by_get.json().await.unwrap();
+
+    assert_eq!(request.first_name, body_from_get.first_name)
+
 }
