@@ -32,6 +32,22 @@ pub struct BookingRequest {
     pub additional_needs: String,
 }
 
+impl Default for BookingRequest {
+    fn default() -> Self {
+        Self {  
+            first_name: "Opyat".into(),
+            last_name: "Mamina".into(), 
+            total_price: 1000, 
+            deposit_paid: true, 
+            booking_dates: BookingDates {
+                check_in: "2026-08-08".into(),
+                check_out: "2026-09-09".into(),
+            }, 
+            additional_needs: "Testing".into(), 
+        }
+    }    
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BookingResponse {
     
